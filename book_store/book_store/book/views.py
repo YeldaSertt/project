@@ -36,7 +36,7 @@ def homepage(Request):
     return render(Request,'homepage.html',context = {"book_list":book_list})
 
 def bookspecies():
-    return render(Request,'homepage.html')
+    return render(Request,'bookspecies.html')
 def blog():
     pass
 
