@@ -35,8 +35,10 @@ def homepage(Request):
     # Db_save()
     return render(Request,'homepage.html',context = {"book_list":book_list})
 
-def bookspecies():
-    return render(Request,'bookspecies.html')
+def bookspecies(Request):
+    book_list = book.objects.all()
+
+    return render(Request,'bookspecies.html',context = {"book_list":book_list})
 def blog():
     pass
 
