@@ -27,7 +27,7 @@ def Db_save():
 
     
 # Create your views here.
-def Merhaba_Django(Request):
+def homepage(Request):
 
     book_list = book.objects.all()
     # for q in query:
@@ -35,12 +35,17 @@ def Merhaba_Django(Request):
     # Db_save()
     return render(Request,'homepage.html',context = {"book_list":book_list})
 
-def home_page():
+def bookspecies():
     return render(Request,'homepage.html')
-def product():
+def blog():
     pass
 
-def drama():
+def favorite():
     pass
-def novel():
+def login():
     pass
+def register():
+    pass
+def layout():
+    pass
+

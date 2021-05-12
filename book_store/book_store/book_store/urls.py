@@ -16,14 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url,include
-from book.views import Merhaba_Django
+from book.views import homepage
 from django.conf.urls.static import static
 from django.conf import settings
 
 # book altındaki viewde bulunan defleri burada tanıt
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r"^Merhaba/$",Merhaba_Django)
-    # url(r"^post/",include("book.urls"))
+    # url(r"^Merhaba/$",Merhaba_Django)
+    url(r"^bookstore/",include("book.urls"))
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
