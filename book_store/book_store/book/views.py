@@ -42,8 +42,9 @@ def bookspecies(Request):
 def blog():
     pass
 
-def favorite():
-    pass
+def favorite(Request):
+    book_list = book.objects.all()
+    return render(Request,'favorite/favorite.html',context={"book_list":book_list})
 def login():
     pass
 def register():
