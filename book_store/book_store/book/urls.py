@@ -1,7 +1,7 @@
 # viewdeki urlleri buraya yazıcaz
 from django.conf.urls import url
 
-from .views import homepage,bookspecies,favorite,login,register,layout
+from .views import homepage,bookspecies,favorite,login,register,layout,getMostReadedBooks
 urlpatterns = [
     url(r"^anasayfa/$",homepage),
     url(r"^bookspecies/$",bookspecies),
@@ -9,5 +9,6 @@ urlpatterns = [
     url(r"^login/$",login),
     url(r"^register/$",register),
     url(r"^layout/$",layout),
+    url(r"^getMostReadedBooks/$",getMostReadedBooks),
 ]
 

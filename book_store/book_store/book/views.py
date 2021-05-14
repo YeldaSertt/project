@@ -1,6 +1,9 @@
 
+from django.http.response import JsonResponse
 from django.shortcuts import render,HttpResponse
 from book.models import book,book_species,Author
+import json
+from django.core import serializers
 from datetime import date
 
 
@@ -44,7 +47,14 @@ def blog():
 
 def favorite(Request):
     book_list = book.objects.all()
+
+
     return render(Request,'favorite/favorite.html',context={"book_list":book_list})
+def getMostReadedBooks(Request): 
+    book_list = book.objects.filter(author_id=1)
+    book_list1 = list(book_list.values())
+    # dump = json.dumps(data)
+    return JsonResponse(book_list1,safe=False)
 def login():
     pass
 def register():
