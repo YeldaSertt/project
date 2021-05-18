@@ -53,12 +53,12 @@
                         {%for p in book_list%}
                             <div class="col-lg-4 col-md-6 mb-4">                
                                 <div class="card h-100">
-                                    <a href="#!"><img class="card-img-top" src="{% static 'images/demo/harry_potter.jpg' %}" alt="..." /></a>
+                                    <a href="#!"><img class="card-img-top" src="{{p.image}}" alt="..." /></a>
                                     <div class="card-body">
                                         
-                                        <h4 class="card-title"><a href="#!">{{p.name}}</a></h4>
+                                        <h4 class="card-title"><a href="#!">{{p.book_name}}</a></h4>
                                         <!-- <h5>$24.99</h5> -->
-                                        <p class="card-text">YORUMLAR BURAYA GELİCEK</p>
+                                        <p class="card-text">{{p.desc}}</p>
                                     </div>
                                     <div class="card-footer"><small class="text-muted">★ ★ ★ ★ ☆</small></div>
                                 </div>

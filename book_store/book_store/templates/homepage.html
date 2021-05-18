@@ -13,9 +13,9 @@
 
             <figure><a href="#"><img src="{% static 'images/demo/harry_potter.jpg' %}" alt=""></a>
               <figcaption>
-                <h3 class="heading">{{ book.name }}</h3>
-                <h6>{{book.author_id.author_name}} {{book.author_id.author_lastname}}</h6>
-                <p>{{book.book_species_id.species_name}}</p>
+                <h3 class="heading">{{ book.book_name }}</h3>
+                <h6>{{book.author_id.author_name}}</h6>
+                <p>{{book.species_id.species_name}}</p>
               </figcaption>
             </figure>
           </li>
