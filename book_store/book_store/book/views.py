@@ -1,6 +1,6 @@
 
 from django.http.response import JsonResponse
-from django.shortcuts import render,HttpResponse
+from django.shortcuts import render,HttpResponse,redirect
 from book.models import book,book_species,Author
 import json
 from django.core import serializers
@@ -40,7 +40,6 @@ def homepage(Request):
 
 def bookspecies(Request):
     book_list = book.objects.all()
-
     return render(Request,'bookspecies.html',context = {"book_list":book_list})
 def blog():
     pass
@@ -48,10 +47,22 @@ def blog():
 def favorite(Request):
     book_list = book.objects.all()
     return render(Request,'favorite/favorite.html',context={"book_list":book_list})
+    
 def getMostReadedBooks(Request): 
     book_list = book.objects.filter(author_id=1)
     book_list1 = list(book_list.values())
     return JsonResponse(book_list1,safe=False)
+
+def allBook(Request):
+    
+    book_list = book.objects.all()
+    return render(Request,'favorite/favorite.html',context={"book_list":book_list})
+
+def getAdmitBooks(Request): 
+    book_list = book.objects.filter(author_id=2)
+    book_admit = list(book_list.values())
+    return JsonResponse(book_admit,safe=False)
+
 def login():
     pass
 def register():

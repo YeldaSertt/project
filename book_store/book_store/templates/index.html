@@ -46,10 +46,8 @@ Licence URI: https://www.os-templates.com/template-terms
 <div class="wrapper row1">
   <header id="header" class="hoc clear"> 
     <!-- ################################################################################################ -->
-    <div id="logo" class="one_half first">
-      <h1 class="logoname"><a href="index.html"><span>Suro</span>gou</a></h1>
-    </div>
-    <div class="one_half">
+
+    <!-- <div class="one_half">
       <ul class="nospace clear">
         <li class="one_half first">
           <div class="block clear"><i class="fas fa-phone"></i> <span><strong class="block">Call Us:</strong> +00 (123) 456 7890</span> </div>
@@ -58,14 +56,17 @@ Licence URI: https://www.os-templates.com/template-terms
           <div class="block clear"><i class="far fa-clock"></i> <span><strong class="block"> Mon. - Sat.:</strong> 08.00am - 18.00pm</span> </div>
         </li>
       </ul>
-    </div>
+    </div> -->
     <!-- ################################################################################################ -->
   </header>
+  <div class="wrapper bgded overlay" src="{% static 'images/demo/backgrounds/01.png' %}">
+
+    <div id="pageintro" class="hoc clear"> 
   <nav id="mainav" class="hoc clear"> 
     <!-- ################################################################################################ -->
     <ul class="clear">
-      <li class="active"><a href="index.html">BOOK STORE</a></li>
-      <li><a class="drop" href="#">Roman Türleri</a>
+      <li class="active"><a href="{% url 'homepage' %}">BOOK STORE</a></li>
+      <li><a class="drop" href="{% url 'bookspecies' %}">Roman Türleri</a>
         <ul>
           <li><a href="pages/gallery.html">Macera</a></li>
           <li><a href="pages/full-width.html">Bilim Kurgu</a></li>
@@ -89,7 +90,7 @@ Licence URI: https://www.os-templates.com/template-terms
           <li><a href="#">Manga</a></li>
         </ul>
       </li>
-      <li><a href="#">Kitap Önerileri</a></li>
+      <li><a href="{% url 'favorite' %}">Kitap Önerileri</a></li>
       <!-- <li><a href="#">Link Text</a></li>
       <li><a href="#">Link Text</a></li>
       <li><a href="#">Long Link Text</a></li> -->
@@ -97,19 +98,21 @@ Licence URI: https://www.os-templates.com/template-terms
     <!-- ################################################################################################ -->
   </nav>
 </div>
+<br>
+<br>
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
-
+<!-- 
 <div class="wrapper bgded overlay" style="background-image:url('images/demo/backgrounds/01.png');">
-  <div id="pageintro" class="hoc clear"> 
+  <div id="pageintro" class="hoc clear">  -->
     <!-- ################################################################################################ -->
-    <article>
+    <!-- <article>
       <p>Aenean ac nisl vitae lobortis</p>
       <h3 class="heading">Ultricies fusce sed ligula</h3>
       <p>Sem suscipit mollis praesent volutpat placerat nisl suspendisse</p>
       <footer><a class="btn" href="#">Potenti nunc nec urna</a></footer>
-    </article>
+    </article> -->
     <!-- ################################################################################################ -->
   </div>
 </div>

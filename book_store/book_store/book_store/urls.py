@@ -4,7 +4,7 @@ The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.1/topics/http/urls/
 Examples:
 Function views
-    1. Add an import:  from my_app import views
+    1. Add an import:  from my_app import views4
     2. Add a URL to urlpatterns:  path('', views.home, name='home')
 Class-based views
     1. Add an import:  from other_app.views import Home
@@ -23,7 +23,7 @@ from django.conf import settings
 # book altındaki viewde bulunan defleri burada tanıt
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # url(r"^Merhaba/$",Merhaba_Django)
+    url(r"^$",homepage),
     url(r"^bookstore/",include("book.urls"))
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
