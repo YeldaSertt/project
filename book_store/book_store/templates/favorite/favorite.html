@@ -24,8 +24,8 @@
                     <h1 class="my-4">Category</h1>
                     <div class="list-group">
                         <a class="list-group-item" href="{% url 'allbook' %}">Tüm Kitaplar</a>  <!-- {{book.views.allBook}}-->
-                        <a class="list-group-item" href="#!" onclick="getAdmitBooks()">En cok begenilen kitaplar</a>
-                        <a class="list-group-item" href="#!" onclick="getMostReadedBooks()">JK Rowling Kitapları</a>
+                        <a class="list-group-item" href="#!" onclick="getAdmitBooks()">En cok begenilen türler</a>
+                        <a class="list-group-item" href="#!" onclick="getMostReadedBooks()">En cok Okunan Kitaplar</a>
                     </div>
                 </div>
                 <div class="col-lg-9">
@@ -53,14 +53,34 @@
                         {%for p in book_list%}
                             <div class="col-lg-4 col-md-6 mb-4">                
                                 <div class="card h-100">
-                                    <a href="#!"><img class="card-img-top" src="{{p.image}}" alt="..." /></a>
+                                    {% if p.image %}
+                                        <a href="#!"><img class="card-img-top" src="{{p.image}}" alt="..." /></a>
+                                    {% else %}
+                                        <a href="#!"><img class="card-img-top" src="{% static 'images/demo/resim-yok.jpg' %}" alt="..." /></a>
+                                    {% endif %}
                                     <div class="card-body">
                                         
                                         <h4 class="card-title"><a href="#!">{{p.book_name}}</a></h4>
                                         <!-- <h5>$24.99</h5> -->
                                         <p class="card-text">{{p.desc}}</p>
                                     </div>
-                                    <div class="card-footer"><small class="text-muted">★ ★ ★ ★ ☆</small></div>
+                                    <div class="card-footer"><small class="text-muted"></small>
+                                    {% for i in '12345'|make_list %}
+                                        {% if p.star >= i %}
+                                            ★ 
+                                        {% else %}
+                                            ☆ 
+                                        {% endif %}
+
+                                    {% endfor %}
+                                </small></div>
+                                    
+
+                                    <div class="row">
+                                        <div class="col">
+                                            <p><a href="#" class="btn-block">Devamını Oku</a></p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         {% endfor %}
@@ -138,12 +158,12 @@
     $.each(data, function (key, val) {
         var myvar = '<div class="col-lg-4 col-md-6 mb-4">                '+
 '                                <div class="card h-100">'+
-'                                    <a href="#!"><img class="card-img-top" src="/static/images/demo/harry_potter.jpg" alt="..." /></a>'+
+'                                    <a href="#!"><img class="card-img-top" src='+val.images+' alt="..." /></a>'+
 '                                    <div class="card-body">'+
 '                                        '+
 '                                        <h4 class="card-title"><a href="#!">'+val.name+'</a></h4>'+
-'                                        <!-- <h5>$24.99</h5> -->'+
-'                                        <p class="card-text">YORUMLAR BURAYA GELİCEK</p>'+
+// '                                        <h5>'+val.tur+'</h5> '+
+'                                        <p class="card-text">'+val.desc+'</p>'+
 '                                    </div>'+
 '                                    <div class="card-footer"><small class="text-muted">★ ★ ★ ★ ☆</small></div>'+
 '                                </div>'+
@@ -167,7 +187,7 @@
   '                                    <div class="card-body">'+
   '                                        '+
   '                                        <h4 class="card-title"><a href="#!">'+val.name+'</a></h4>'+
-  '                                        <!-- <h5>$24.99</h5> -->'+
+  '                                        <h5>'+val.tur+'</h5> '++
   '                                        <p class="card-text">YORUMLAR BURAYA GELİCEK</p>'+
   '                                    </div>'+
   '                                    <div class="card-footer"><small class="text-muted">★ ★ ★ ★ ☆</small></div>'+

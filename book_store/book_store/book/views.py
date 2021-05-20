@@ -4,8 +4,8 @@ from django.shortcuts import render,HttpResponse,redirect
 from book.models import book,book_species,author
 import json
 from django.core import serializers
-from datetime import date
-import dateparser
+from datetime import datetime
+
 
 def fileRead():
     with open('book/book2.json', 'r') as f:
@@ -23,9 +23,10 @@ def databaseInsert(obj):
         species.save()
         author1 = author(author_name=o["author"])
         author1.save()
+
         book1 = book(book_name = o["book_name"],
                             sayfa_sayisi = o["sayfa_sayisi"] if o["sayfa_sayisi"] else 0,
-                            yayin_tarihi= "2021-05-05",
+                            yayin_tarihi= "2008-02-06",
                             species_id=species,
                             author_id = author1,
                             image =o["images"][0] if o["images"] else "",
@@ -76,7 +77,7 @@ def favorite(Request):
     return render(Request,'favorite/favorite.html',context={"book_list":book_list})
     
 def getMostReadedBooks(Request): 
-    book_list = book.objects.filter(author_id=1)
+    book_list = book.objects.filter(star="5")
     book_list1 = list(book_list.values())
     return JsonResponse(book_list1,safe=False)
 
@@ -86,7 +87,7 @@ def allBook(Request):
     return render(Request,'favorite/favorite.html',context={"book_list":book_list})
 
 def getAdmitBooks(Request): 
-    book_list = book.objects.filter(author_id=2)
+    book_list = book.objects.filter(star="5",start="4")
     book_admit = list(book_list.values())
     return JsonResponse(book_admit,safe=False)
 
