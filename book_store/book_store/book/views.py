@@ -19,8 +19,15 @@ def fileRead():
 #         record.save()
 def databaseInsert(obj):
     for o in obj:
-        species = book_species(species_name= o["tur"])
-        species.save()
+        species = o["tur"]
+        species_list = book_species.objects.filter(species_name=o["tur"])
+        if species_list:
+            species = species_list[0]
+        else:
+            species = book_species(species_name= o["tur"])
+            species.save()   
+                  
+        
         author1 = author(author_name=o["author"])
         author1.save()
 
@@ -68,6 +75,7 @@ def homepage(Request):
 
 def bookspecies(Request):
     book_list = book.objects.all()
+    # book_species = book.objects.filter(boo)
     return render(Request,'bookspecies.html',context = {"book_list":book_list})
 def blog():
     pass
