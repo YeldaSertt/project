@@ -24,17 +24,12 @@
                 <div class="col-lg-3">
                     <h1 class="my-4">Category</h1>
                     <div class="list-group">
-                        <li class="list-group-item"><a href="{% url 'bookspeciesani' %}">Anı</a></li>
-                        <li class="list-group-item"><a href="{% url 'getBookSpecies' %}" id="manga">Manga</a></li>
-                        <li class="list-group-item"><a href="category.html">Çizgi Roman</a></li>
-                        <li class="list-group-item"><a href="category.html">Edebiyat</a></li>
-                        <li class="list-group-item"><a href="category.html">Hikaye</a></li>
-                        <li class="list-group-item"><a href="category.html">Masal</a></li>
-                        <li class="list-group-item"><a href="category.html">Mizah</a></li>
-                        <li class="list-group-item"><a href="category.html">Öykü</a></li>
-                        <li class="list-group-item"><a href="category.html">Tarih</a></li>
-                        <li class="list-group-item"><a href="category.html">Şiir</a></li>
-                        <li class="list-group-item"><a href="category.html">Polisiye</a></li>
+                        {% for book in species_list %}
+                            <li class="list-group-item"><a href="{% url 'getBookSpecies' book.species_id  %}" id="manga">{{book.species_name}}</a></li>
+                        {% endfor %}
+
+                        <!-- <li class="list-group-item"><a href="category.html">Edebiyat</a></li> -->
+                      
                     </div>
                 </div>
                 <div class="col-lg-9">
@@ -59,7 +54,7 @@
                         </a>
                     </div>
                     <div class="row" id="booksDiv">
-                        {%for p in book_list%}
+                        {%for p in book_list %}
                             <div class="col-lg-4 col-md-6 mb-4">                
                                 <div class="card h-100">
                                     {% if p.image %}

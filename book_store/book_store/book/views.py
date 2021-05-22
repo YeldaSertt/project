@@ -73,23 +73,15 @@ def homepage(Request):
     return render(Request,'homepage.html',context = {"book_list":book_list})
 
 def bookspecies(Request):
-    species_list  = book.objects.filter(species_id__species_name='fantastik')
-    return render(Request,'book_species/bookspecies.html',context= {"book_list":species_list})
+    book_list = book.objects.all()
+    species_list = book_species.objects.all()
+    return render(Request,'book_species/bookspecies.html',context = {"book_list":book_list,"species_list":species_list})
 
-def bookspeciesani(Request):
-    species_list  = book.objects.filter(species_id__species_name='manga')
-    return render(Request,'book_species/bookspecies.html',context= {"book_list":species_list})
-# def getBookSpecies(Request): 
-#     species_list  = book.objects.filter(species_id__species_name='manga')
-#     book_list1 = list(book_list.values())
-#     return JsonResponse(book_list1,safe=False)
-# def getBookSpecies(request, id):
-#     print(id)
-#     species_list  = book.objects.filter(species_id__species_name='manga')
-#     context = {'book_list':species_list,'request':request}
-#     mytemplate  = loader.get_template('book_species/bookspecies.html')
-#     html = mytemplate.render(context)
-#     return HttpResponse(html)
+def getBookSpecies(Request, species_id): 
+    book_species_list  = book.objects.filter(species_id__species_id=species_id)
+    species_list = book_species.objects.all()
+    return render(Request,'book_species/bookspecies.html',context = {"book_list":book_species_list,"species_list":species_list})
+ 
 
 def blog():
     pass
