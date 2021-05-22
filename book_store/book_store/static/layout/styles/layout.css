@@ -496,3 +496,10 @@ table a, #comments a{background-color:inherit;}
 	.font-x2{font-size:1.4rem;}
 	.font-x3{font-size:1.6rem;}
 }
+.card-body > p{
+
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 3; /* kaç satırla sınırlayacağımızı yazıyoruz */
+	-webkit-box-orient: vertical;
+  }

@@ -1,0 +1,7 @@
+.card-body > p{
+
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 5; /* kaç satırla sınırlayacağımızı yazıyoruz */
+	-webkit-box-orient: vertical;
+  }

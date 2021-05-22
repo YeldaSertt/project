@@ -14,6 +14,7 @@
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static 'bootstrap/css/styles.css' %}" rel="stylesheet" />
+        <link href="{% static 'bootstrap/css/a.css' %}" rel="stylesheet" />
         
     </head>
     <body>
@@ -62,7 +63,8 @@
                                         
                                         <h4 class="card-title"><a href="#!">{{p.book_name}}</a></h4>
                                         <!-- <h5>$24.99</h5> -->
-                                        <p class="card-text">{{p.desc}}</p>
+
+                                        <p class="card-text" >{{p.desc}}</p>
                                     </div>
                                     <div class="card-footer"><small class="text-muted"></small>
                                     {% for i in '12345'|make_list %}
@@ -74,11 +76,9 @@
 
                                     {% endfor %}
                                 </small></div>
-                                    
-
                                     <div class="row">
                                         <div class="col">
-                                            <p><a href="#" class="btn-block">Devamını Oku</a></p>
+                                            <p><a href="http://127.0.0.1:8000/bookstore/favorite/{{p.image}}" class="btn-block">Devamını Oku</a></p>
                                         </div>
                                     </div>
                                 </div>
@@ -156,19 +156,48 @@
     $.get('/bookstore/getMostReadedBooks', function(data, status){
    $('#booksDiv').html('');
     $.each(data, function (key, val) {
-        var myvar = '<div class="col-lg-4 col-md-6 mb-4">                '+
+          var image=val.image;
+          if(val.image==""||val.image==undefined){
+
+            image="/static/images/demo/resim-yok.jpg"
+          }
+          console.log(val);
+          console.log(image);
+          var stars='';
+          var cast = Number(val.star);
+          for(var i=0;i<5;i++){
+             
+            if(cast>=i+1){
+                stars+='★';
+            }
+            else{
+
+                stars+='☆';
+            }
+                    }
+          
+var myvar1 = '<div class="col-lg-4 col-md-6 mb-4">'+
 '                                <div class="card h-100">'+
-'                                    <a href="#!"><img class="card-img-top" src='+val.images+' alt="..." /></a>'+
+'                                        <a href="#!"><img class="card-img-top" src="'+image+'" alt="..." /></a>'+
 '                                    <div class="card-body">'+
 '                                        '+
-'                                        <h4 class="card-title"><a href="#!">'+val.name+'</a></h4>'+
-// '                                        <h5>'+val.tur+'</h5> '+
-'                                        <p class="card-text">'+val.desc+'</p>'+
+'                                        <h4 class="card-title"><a href="#!">'+val.book_name+'</a></h4>'+
+'                                        <!-- <h5>$24.99</h5> -->'+
+'                                        <p class="card-text" >'+val.desc+'</p>'+
 '                                    </div>'+
-'                                    <div class="card-footer"><small class="text-muted">★ ★ ★ ★ ☆</small></div>'+
+'                                    <div class="card-footer"><small class="text-muted"></small>'+stars+'</small></div>'+
+'                                    <div class="row">'+
+'                                        <div class="col">'+
+'                                            <p><a href="http://127.0.0.1:8000/bookstore/favorite/'+val.book_name+'" class="btn-block">Devamını Oku</a></p>'+
+'                                        </div>'+
+'                                    </div>'+
 '                                </div>'+
 '                            </div>';
-        $('#booksDiv').append(myvar);
+	
+
+     
+
+        $('#booksDiv').append(myvar1);
     });  
   });
 
@@ -187,7 +216,7 @@
   '                                    <div class="card-body">'+
   '                                        '+
   '                                        <h4 class="card-title"><a href="#!">'+val.name+'</a></h4>'+
-  '                                        <h5>'+val.tur+'</h5> '++
+  '                                        <h5>'+val.tur+'</h5> '+
   '                                        <p class="card-text">YORUMLAR BURAYA GELİCEK</p>'+
   '                                    </div>'+
   '                                    <div class="card-footer"><small class="text-muted">★ ★ ★ ★ ☆</small></div>'+
