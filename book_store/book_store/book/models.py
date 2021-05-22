@@ -13,8 +13,8 @@ class author(models.Model):
 class book(models.Model):
     book_id = models.BigAutoField(primary_key=True)     
     book_name = models.CharField(max_length=100,blank=False,verbose_name="Kitap Adı")
-    sayfa_sayisi = models.IntegerField(blank=True)
-    yayin_tarihi = models.DateTimeField(blank=True)
+    sayfa_sayisi = models.IntegerField(blank=False)
+    yayin_tarihi = models.DateTimeField(null=True)
     species_id = models.ForeignKey(book_species,on_delete=models.CASCADE)
     author_id = models.ForeignKey(author,on_delete=models.CASCADE)
     image = models.CharField(max_length=200,blank=False)
@@ -24,7 +24,7 @@ class book(models.Model):
 class comment(models.Model):
     comment_id = models.BigAutoField(primary_key=True) 
     book_id =models.ForeignKey(book,on_delete=models.CASCADE)      
-    description = models.CharField(max_length=100,blank=False,verbose_name="Kitap Adı")
+    description = models.CharField(max_length=100,blank=False)
     comment_admit = models.IntegerField(blank=True)
 
 class authority(models.Model):
@@ -34,9 +34,10 @@ class authority(models.Model):
 
 class persons(models.Model):
     person_id = models.BigAutoField(primary_key=True)
-    person_name = models.CharField(max_length=100,blank=False)
-    person_surname = models.CharField(max_length=100,blank=False)
-    nick_name = models.CharField(max_length=100,blank=False)
+    person_name = models.CharField(max_length=100,blank=True)
+    person_surname = models.CharField(max_length=100,blank=True)
+    mail_address = models.CharField(max_length=100,blank=True)
+    nick_name = models.CharField(max_length=100,blank=True)
     description = models.CharField(max_length=10000,blank=False)
     photo = models.CharField(max_length=200,blank=False)
     pasword = models.CharField(max_length=200,blank=False)

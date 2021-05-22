@@ -4,8 +4,8 @@ from django.conf.urls import url
 from .views import homepage,bookspecies,favorite,login,register,layout,getMostReadedBooks,allBook,getAdmitBooks,getBookSpecies
 urlpatterns = [
     url(r"^anasayfa/$",homepage,name='homepage'),
-    url(r"^bookspecies/$",bookspecies,name='bookspecies'),
-    url(r"^favorite/$",favorite,name='favorite'),
+    url(r"^kategoriler/$",bookspecies,name='bookspecies'),
+    url(r"^favoriler/$",favorite,name='favorite'),
     url(r"^login/$",login),
     url(r"^register/$",register),
     url(r"^layout/$",layout),
