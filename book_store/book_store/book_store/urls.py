@@ -22,8 +22,9 @@ from django.conf import settings
 
 # book altındaki viewde bulunan defleri burada tanıt
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    # path('admin/', admin.site.urls),
     url(r"^$",homepage),
-    url(r"^bookstore/",include("book.urls"))
+    url(r"^bookstore/",include("book.urls")),
+    url(r"^login/",include("login.urls"))
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
