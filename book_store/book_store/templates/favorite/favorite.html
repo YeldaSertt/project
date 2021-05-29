@@ -61,11 +61,8 @@
                                     {% endif %}
                                     <div class="card-body">
                                         
-                                        <h4 class="card-title"><a href="#!">{{p.book_name}}</a></h4>
-                                        <!-- <h5>$24.99</h5> -->
-
+                                        <h4 class="card-title"><a href="{% url 'getBookDetails' p.book_id  %}">{{p.book_name}}</a></h4>
                                         <p class="card-text" >{{p.desc}}</p>
-                                        <p class="card-text" >{{p.book_id}}</p>
                                     </div>
                                     <div class="card-footer"><small class="text-muted"></small>
                                     {% for i in '12345'|make_list %}
