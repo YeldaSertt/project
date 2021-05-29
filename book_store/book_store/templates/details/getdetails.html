@@ -23,13 +23,13 @@
                 <br>
                 <div class="row">
                 
-                  <div class="col-md-6">
+                  <div class="col-md-4">
                     <div class="pro-img-details">
-                        <img src="{{book.image}}" alt="" style="width:300;height:300">     
+                        <img src="{{book.image}}" alt="" style="width:400;height:400">     
                     </div>
                   </div>
 
-                  <div class="col-md-6">      
+                  <div class="col-md-8" style="right: -60px ;">      
                     <br>
                     <br>             
                     <table >
@@ -55,15 +55,17 @@
                             <td>{{book.yayin_tarihi|date:"d-m-Y"}}</td>
                         </tr>
                       </table>    
-                  </div>
-                  
+                      <br>
+                      <br>
+                      <h3>Kitap Özeti:</h3>
+                      <p>{{book.desc}}</p>
+                  </div>          
                 </div>
                 <br>
-                <br>
-                <div class="row">
+                <!-- <div class="row">
                     <p>{{book.desc}}</p>
                     
-                  </div>
+                  </div> -->
                 
                   <!-- <div class="pro-img-list">
 
