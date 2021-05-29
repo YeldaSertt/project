@@ -65,6 +65,7 @@
                                         <!-- <h5>$24.99</h5> -->
 
                                         <p class="card-text" >{{p.desc}}</p>
+                                        <p class="card-text" >{{p.book_id}}</p>
                                     </div>
                                     <div class="card-footer"><small class="text-muted"></small>
                                     {% for i in '12345'|make_list %}
@@ -78,7 +79,7 @@
                                 </small></div>
                                     <div class="row">
                                         <div class="col">
-                                            <p><a href="http://127.0.0.1:8000/bookstore/favorite/{{p.image}}" class="btn-block">Devamını Oku</a></p>
+                                            <p><a href="{% url 'getBookDetails' p.book_id  %}" >Devamını Oku</a></p>
                                         </div>
                                     </div>
                                 </div>
@@ -202,7 +203,6 @@ var myvar1 = '<div class="col-lg-4 col-md-6 mb-4">'+
   });
 
   }
-
         </script>
 
 <script type="text/javascript">

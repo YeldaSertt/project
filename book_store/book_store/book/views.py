@@ -85,6 +85,12 @@ def getAdmitBooks(Request):
     book_admit = list(book_list.values())
     return JsonResponse(book_admit,safe=False)
 
+def getBookDetails(Request,book_id):
+    book_detail_list  = book.objects.filter(book_id=book_id)
+    return render(Request,'details/getdetails.html',context={"book_detail_list":book_detail_list})
+    
+
+
 def login():
     pass
 def register():

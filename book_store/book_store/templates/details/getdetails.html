@@ -1,0 +1,195 @@
+{% extends 'index.html'%}
+{% load static %}
+{% block icerik %}
+
+<link href="{% static 'bootstrap/css/detail.css' %}" rel="stylesheet" />
+<link href="{% static 'bootstrap/css/styles.css' %}" rel="stylesheet" />
+<link href="{% static 'bootstrap/css/comment.css' %}" rel="stylesheet" />
+
+<div class="container bootdey">
+    <br>
+    <br>
+
+    <div class="col-md-12">
+    <section class="panel">
+        
+          <div class="panel-body">
+              <div class="col-md-12">
+                {% for book in book_detail_list %}
+                  <div class="row">
+                    <h4>{{book.book_name}}</h4>
+                  </div>
+                <br>
+                <br>
+                <div class="row">
+                
+                  <div class="col-md-6">
+                    <div class="pro-img-details">
+                        <img src="{{book.image}}" alt="" style="width:300;height:300">     
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">      
+                    <br>
+                    <br>             
+                    <table >
+                        <tr>
+                          <td>Kitap Adı:</td>
+                          <td>{{book.book_name}}</td>
+                          
+                        </tr>
+                        <tr>
+                          <td>Yazar:</td>
+                          <td>{{book.author_id.author_name}}</td>
+                        </tr>
+                        <tr>
+                            <td>Tür</td>
+                            <td>{{book.species_id.species_name|capfirst}}</td>
+                        </tr>
+                        <tr >
+                            <td>Sayfa Sayısı:</td>
+                            <td>{{book.sayfa_sayisi}}</td>
+                        </tr>
+                        <tr>
+                            <td>Yayın Tarihi:</td>
+                            <td>{{book.yayin_tarihi|date:"d-m-Y"}}</td>
+                        </tr>
+                      </table>    
+                  </div>
+                  
+                </div>
+                <br>
+                <br>
+                <div class="row">
+                    <p>{{book.desc}}</p>
+                    
+                  </div>
+                
+                  <!-- <div class="pro-img-list">
+
+                      <a href="#">
+                          <img src="https://via.placeholder.com/115x100/87CEFA/000000" alt="">
+                      </a>
+                      <a href="#">
+                          <img src="https://via.placeholder.com/115x100/FF7F50/000000" alt="">
+                      </a>
+                      <a href="#">
+                          <img src="https://via.placeholder.com/115x100/20B2AA/000000" alt="">
+                      </a>
+                      <a href="#">
+                          <img src="https://via.placeholder.com/120x100/20B2AA/000000" alt="">
+                      </a> 
+
+
+                  </div> -->
+              </div>
+              <br>
+              <br>
+              <br>
+              {% endfor %} 
+              <div class="col-md-12">
+  
+                <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+                <section class="content-item" id="comments">
+                    <div class="container">   
+                        <div class="row">
+                            <div class="col-sm-8">   
+                                <form>
+                                    <h3 class="pull-left">New Comment</h3>
+                                    <button type="submit" class="btn btn-normal pull-right">Submit</button>
+                                    <fieldset>
+                                        <div class="row">
+                                            <div class="col-sm-3 col-lg-2 hidden-xs">
+                                                <!-- <img class="img-responsive" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt=""> -->
+                                            </div>
+                                            <div class="form-group col-xs-12 col-sm-9 col-lg-10">
+                                                <textarea class="form-control" id="message" placeholder="Your message" required=""></textarea>
+                                            </div>
+                                        </div>  	
+                                    </fieldset>
+                                </form>
+                                
+                                <h3>4 Comments</h3>
+                                
+                                <!-- COMMENT 1 - START -->
+                                <div class="media">
+                                    <a class="pull-left" href="#"><img class="media-object" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt=""></a>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">John Doe</h4>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                        <ul class="list-unstyled list-inline media-detail pull-left">
+                                            <li><i class="fa fa-calendar"></i>27/02/2014</li>
+                                            <li><i class="fa fa-thumbs-up"></i>13</li>
+                                        </ul>
+                                        <ul class="list-unstyled list-inline media-detail pull-right">
+                                            <li class=""><a href="">Like</a></li>
+                                            <li class=""><a href="">Reply</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- COMMENT 1 - END -->
+                                
+                                <!-- COMMENT 2 - START -->
+                                <div class="media">
+                                    <a class="pull-left" href="#"><img class="media-object" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt=""></a>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">John Doe</h4>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                        <ul class="list-unstyled list-inline media-detail pull-left">
+                                            <li><i class="fa fa-calendar"></i>27/02/2014</li>
+                                            <li><i class="fa fa-thumbs-up"></i>13</li>
+                                        </ul>
+                                        <ul class="list-unstyled list-inline media-detail pull-right">
+                                            <li class=""><a href="">Like</a></li>
+                                            <li class=""><a href="">Reply</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- COMMENT 2 - END -->
+                                
+                                <!-- COMMENT 3 - START -->
+                                <div class="media">
+                                    <a class="pull-left" href="#"><img class="media-object" src="https://bootdey.com/img/Content/avatar/avatar3.png" alt=""></a>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">John Doe</h4>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                        <ul class="list-unstyled list-inline media-detail pull-left">
+                                            <li><i class="fa fa-calendar"></i>27/02/2014</li>
+                                            <li><i class="fa fa-thumbs-up"></i>13</li>
+                                        </ul>
+                                        <ul class="list-unstyled list-inline media-detail pull-right">
+                                            <li class=""><a href="">Like</a></li>
+                                            <li class=""><a href="">Reply</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- COMMENT 3 - END -->
+                                
+                                <!-- COMMENT 4 - START -->
+                                <div class="media">
+                                    <a class="pull-left" href="#"><img class="media-object" src="https://bootdey.com/img/Content/avatar/avatar4.png" alt=""></a>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">John Doe</h4>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                        <ul class="list-unstyled list-inline media-detail pull-left">
+                                            <li><i class="fa fa-calendar"></i>27/02/2014</li>
+                                            <li><i class="fa fa-thumbs-up"></i>13</li>
+                                        </ul>
+                                        <ul class="list-unstyled list-inline media-detail pull-right">
+                                            <li class=""><a href="">Like</a></li>
+                                            <li class=""><a href="">Reply</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- COMMENT 4 - END -->
+                            
+                            </div>
+                        </div>
+                    </div>
+                </section>
+              </div>
+          </div>
+      </section>
+      </div>
+      </div>
+{% endblock %}
