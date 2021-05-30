@@ -15,6 +15,8 @@ class RegisterForm(forms.ModelForm):
         super(RegisterForm,self).__init__(*args,**kwargs)
         for field in self.fields:
             self.fields[field].widget.attrs = {'class':'form-control'}
+        self.fields['first_name'].required=True
+        self.fields['last_name'].required=True
 
     def clean(self):
         password = self.cleaned_data.get('password')
@@ -26,8 +28,10 @@ class RegisterForm(forms.ModelForm):
     def clean_email(self):
         email = self.cleaned_data.get('email')
         email =email.lower()
-        if  User.objects.filter(email=email).exists():
+        print( email)
+        if  User.objects.filter(email=email).exists():         
             raise forms.ValidationError('Bu email sistemde kayıtlı')
+        return email
 
 
 class LoginForm(forms.Form):

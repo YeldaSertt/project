@@ -129,12 +129,14 @@
     </head>
 
 <form method="post" action="{% url 'login' %}">
+  
       <div class="imgcontainer">
         <img src="{% static 'images/demo/books-png.png' %}" alt="Avatar" class="avatar">
       </div>
       
      
         <div class="container">
+        {% csrf_token %}
         {% for field in form %}
           <label for="uname"><b>{{field.label}}</b></label>
           {{field}}
