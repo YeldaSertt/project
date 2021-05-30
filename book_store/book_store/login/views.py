@@ -24,7 +24,7 @@ def register(Request):
                 return HttpResponseRedirect(reverse('homepage'))
     return render(Request,'auths/register.html',context={'form':form})
     
-def login(request):
+def user_login(request):
     form = LoginForm(request.POST or None)
     if form.is_valid():
         
@@ -33,7 +33,8 @@ def login(request):
         user = authenticate(username=username,password=password)
         if user:
             if user.is_active:
-                msg = "Hoşgeldin"%(username)
+                login(request,user)
+                msg = "Hoşgeldin"
                 messages.success(request,msg,extra_tags='success')
                 return HttpResponseRedirect(reverse('homepage'))
     return render(request,'auths/login.html',context={"form": form})
