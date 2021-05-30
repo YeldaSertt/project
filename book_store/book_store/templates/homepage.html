@@ -1,6 +1,7 @@
 {% extends 'index.html'%}
 {% load static %}
 {% block icerik %}
+<link href="{% static 'bootstrap/css/a.css' %}" rel="stylesheet" />
 <div class="container px-4 px-lg-5">
     <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="col-md-4">
@@ -25,12 +26,17 @@
 
                 <div class="row">
                     <div class="col-md-3">
-                            <a href="#"><img src="{% static 'images/demo/harry_potter.jpg' %}" alt=""></a>
+                    {% if book.image %}
+                        <a href="#"><img class='image' src="{{book.image}}" alt="" style="width:170px;height:250px"></a>
+                    {% else %}
+                        <a href="#!"><img class="card-img-top" src="{% static 'images/demo/resim-yok.jpg' %}" alt="..." /></a>
+                    {% endif %}
+                            
                             
                     </div>
                     <div class="col-md-9">
                         <div class="post-preview">
-                            <a href="post.html">
+                            <a href="{% url 'getBookDetails' book.book_id  %}">
                                 <h2 class="post-title">{{ book.book_name }}</h2>
                                 <h3 class="post-subtitle">{{book.author_id.author_name}}, {{book.species_id.species_name}}</h3>
                             </a>

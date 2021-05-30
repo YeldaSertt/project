@@ -21,7 +21,7 @@ def register(Request):
             if user.is_active:
                 login(Request)
                 messages.success(Request,'<b> Tebrikler başarılı </b>',extra_tags='success')
-                # return HttpResponseRedirect(reverse('homepage'))
+                return HttpResponseRedirect(reverse('homepage'))
     return render(Request,'auths/register.html',context={'form':form})
     
 def login(request):
