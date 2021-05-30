@@ -16,8 +16,8 @@ class RegisterForm(forms.ModelForm):
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField(required=True,max_length=50,label="Username",widget=forms.TextInput(attrs={"class":"form-control"}))
-    password = forms.CharField(required=True,max_length=50,label="Password", widget=forms.PasswordInput(attrs={"class":"form-control"}))
+    username = forms.CharField(required=True,max_length=50,label="Kullanıcı Adı",widget=forms.TextInput(attrs={"class":"form-control"}))
+    password = forms.CharField(required=True,max_length=50,label="Şifre", widget=forms.PasswordInput(attrs={"class":"form-control"}))
 
     def clean(self):
         username = self.cleaned_data.get("username")
