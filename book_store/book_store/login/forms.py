@@ -5,14 +5,29 @@ from django.forms import fields
 from django.contrib.auth import authenticate
 
 class RegisterForm(forms.ModelForm):
+    password = forms.CharField(min_length=5,required=True,label='Password',widget=forms.PasswordInput(attrs={'class':'form-control'}))
+    password_confirm = forms.CharField(min_length=5,required=True,label='Password Control',widget=forms.PasswordInput(attrs={'class':'form-control'}))
     class Meta:
         model = User
-        fields=['first_name','last_name','username','email','password']
+        fields=['first_name','last_name','username','email','password','password_confirm']
         
     def __init__(self,*args,**kwargs):
         super(RegisterForm,self).__init__(*args,**kwargs)
         for field in self.fields:
             self.fields[field].widget.attrs = {'class':'form-control'}
+
+    def clean(self):
+        password = self.cleaned_data.get('password')
+        password_confirm = self.cleaned_data.get('password_confirm')
+        if password != password_confirm:
+            self.add_error('password','Parolalar Eşleşmiyor')
+            self.add_error('password_confirm','Parolalar Eşleşmiyor')
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        email =email.lower()
+        if  User.objects.filter(email=email).exists():
+            raise forms.ValidationError('Bu email sistemde kayıtlı')
 
 
 class LoginForm(forms.Form):
