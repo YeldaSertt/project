@@ -26,4 +26,14 @@ def register(Request):
     
 def login(request):
     form = LoginForm(request.POST or None)
+    if form.is_valid():
+        
+        username = form.cleaned_data.get("username")
+        password = form.cleaned_data.get("password")
+        user = authenticate(username=username,password=password)
+        if user:
+            if user.is_active:
+                msg = "Hoşgeldin"%(username)
+                messages.success(request,msg,extra_tags='success')
+                return HttpResponseRedirect(reverse('homepage'))
     return render(request,'auths/login.html',context={"form": form})
