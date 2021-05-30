@@ -25,6 +25,6 @@ urlpatterns = [
     # path('admin/', admin.site.urls),
     url(r"^$",homepage),
     url(r"^bookstore/",include("book.urls")),
-    url(r"^login/",include("login.urls"))
+    url(r"^bookstore/",include("login.urls"))
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
