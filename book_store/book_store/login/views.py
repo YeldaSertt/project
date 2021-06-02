@@ -8,9 +8,7 @@ from .forms import RegisterForm,LoginForm
 
 def register(Request):
     form = RegisterForm(data=Request.POST or None)
-    print("++++",form)
     if form.is_valid():
-        print("----")
         user = form.save(commit=False)
         password = form.cleaned_data.get("password")
         username = form.cleaned_data.get("username")
@@ -26,8 +24,7 @@ def register(Request):
     
 def user_login(request):
     form = LoginForm(request.POST or None)
-    if form.is_valid():
-        
+    if form.is_valid():      
         username = form.cleaned_data.get("username")
         password = form.cleaned_data.get("password")
         user = authenticate(username=username,password=password)
