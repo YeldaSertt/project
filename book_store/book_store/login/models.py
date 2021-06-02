@@ -1,3 +1,21 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-# Create your models here.
+class UserProfile(models.Model):
+    SEX = ((None,'Lütfen cinsiyet giriniz!!'),('diger','DİGER'),('erkek','ERKEK'),('kadın','KADIN'))
+    user =models.OneToOneField(User,null=True,verbose_name='User',on_delete=models.CASCADE)
+    bio = models.TextField(max_length=1000,verbose_name="Hakkımda",blank=True,null=True)
+    profile_photo = models.ImageField(null=True,blank=True,verbose_name='Profile Fotografı')
+    dogum_tarihi = models.DateField(null=True,blank=True,verbose_name='Dogum Tarihi')
+    sex = models.CharField(choices=SEX,blank=False,null=True,max_length=10,verbose_name='Cinsiyet')
+    
+    class Meta:
+        verbose_name_plural ='Kullanici Profilleri'
+
+    def get_screen_name(self):
+        user = self.user
+        if user.get_full_name():
+            return user.get_full_name
+        return user.username
+def __str__(self):
+    return '%s Profile'% (self.get_screen_name())
