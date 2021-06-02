@@ -2,8 +2,9 @@
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
+from django.contrib.messages import get_messages
 from .forms import RegisterForm,LoginForm
 
 def register(Request):
@@ -35,3 +36,12 @@ def user_login(request):
                 messages.success(request,msg,extra_tags='success')
                 return HttpResponseRedirect(reverse('homepage'))
     return render(request,'auths/login.html',context={"form": form})
+
+def user_logout(request):
+    username = request.user.username  # o an hangi user giriş yaptıysa kullanıcı alabiliyoruz.
+    logout(request)
+    msg = "<b> SİSTEMDEN ÇIKIŞ YAPTINIZ %s </b>"%(username)
+    print("-------------")
+    print("--------------",msg)
+    messages.success(request,msg,extra_tags='success')
+    return HttpResponseRedirect(reverse('user_login'))
