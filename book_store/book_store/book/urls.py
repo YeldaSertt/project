@@ -1,11 +1,12 @@
 # viewdeki urlleri buraya yazıcaz
 from django.conf.urls import url
 
-from .views import homepage,bookspecies,favorite,login,register,layout,getMostReadedBooks,allBook,getAdmitBooks,getBookSpecies,getBookDetails
+from .views import homepage,bookspecies,favorite,login,register,layout,getMostReadedBooks,allBook,getAdmitBooks,getBookSpecies,getBookDetails,blog
 urlpatterns = [
     url(r"^anasayfa/$",homepage,name='homepage'),
     url(r"^kategoriler/$",bookspecies,name='bookspecies'),
     url(r"^favorite/$",favorite,name='favorite'),
+    url(r"^blog/$",blog,name='blog'),
     # url(r"^login/$",login),
     # url(r"^register/$",register),
     url(r"^layout/$",layout),

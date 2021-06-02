@@ -1,10 +1,12 @@
 
-from django.http.response import JsonResponse
-from django.shortcuts import render,HttpResponse,redirect
+from django.http.response import HttpResponseRedirect, JsonResponse
+from django.shortcuts import render
+from django.urls import reverse
 from book.models import book,book_species,author
 import json
 from django.core import serializers
 from datetime import datetime
+from django.contrib.auth import authenticate
 import dateparser
 
 def fileRead():
@@ -63,9 +65,12 @@ def getBookSpecies(Request, species_id):
     return render(Request,'book_species/bookspecies.html',context = {"book_list":book_species_list,"species_list":species_list})
  
 
-def blog():
-    pass
-
+def blog(request):
+    # kullanıcı login kontrolü.
+    if not request.user.is_authenticated: 
+        return HttpResponseRedirect(reverse("user_login"))
+    book_list = book.objects.all()
+    return render(request,'blog/blog.html',context = {"book_list":book_list})
 def favorite(Request):
     book_list = book.objects.all()
     return render(Request,'favorite/favorite.html',context={"book_list":book_list})

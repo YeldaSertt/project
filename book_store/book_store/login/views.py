@@ -10,8 +10,12 @@ from .forms import RegisterForm,LoginForm
 
 
 
-def register(Request):
-    form = RegisterForm(data=Request.POST or None)
+def register(request):
+    # if request.user.is_authenticated: 
+    #     return HttpResponseRedirect(reverse("homepage"))
+    if not request.user.is_anonymous: 
+        return HttpResponseRedirect(reverse("homepage"))
+    form = RegisterForm(data=request.POST or None)
     if form.is_valid():
         user = form.save(commit=False)
         password = form.cleaned_data.get("password")
@@ -21,12 +25,14 @@ def register(Request):
         user = authenticate(username=username,password=password)
         if user:
             if user.is_active:
-                login(Request,user)
-                messages.success(Request,'<b> Tebrikler başarılı </b>',extra_tags='success')
+                login(request,user)
+                messages.success(request,'<b> Tebrikler başarılı </b>',extra_tags='success')
                 return HttpResponseRedirect(reverse('homepage'))
-    return render(Request,'auths/register.html',context={'form':form})
+    return render(request,'auths/register.html',context={'form':form})
     
 def user_login(request):
+    if not request.user.is_anonymous: 
+        return HttpResponseRedirect(reverse("homepage"))
     form = LoginForm(request.POST or None)
     if form.is_valid():      
         username = form.cleaned_data.get("username")
