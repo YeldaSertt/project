@@ -2,13 +2,14 @@
 from django.http.response import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from django.urls import reverse
+from django.urls.base import reverse_lazy
 from book.models import book,book_species,author
 import json
 from django.core import serializers
 from datetime import datetime
 from django.contrib.auth import authenticate
 import dateparser
-
+from django.contrib.auth.decorators import login_required
 def fileRead():
     with open('book/book2.json', 'r') as f:
         data=f.read()
@@ -64,11 +65,13 @@ def getBookSpecies(Request, species_id):
     species_list = book_species.objects.all()
     return render(Request,'book_species/bookspecies.html',context = {"book_list":book_species_list,"species_list":species_list})
  
-
+# @login_required(login_url="/bookstore/login/")
+# @login_required(login_url=reverse_lazy("user_login"))
+@login_required
 def blog(request):
-    # kullanıcı login kontrolü.
-    if not request.user.is_authenticated: 
-        return HttpResponseRedirect(reverse("user_login"))
+    # # kullanıcı login kontrolü.
+    # if not request.user.is_authenticated: 
+    #     return HttpResponseRedirect(reverse("user_login"))
     book_list = book.objects.all()
     return render(request,'blog/blog.html',context = {"book_list":book_list})
 def favorite(Request):

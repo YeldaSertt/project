@@ -136,3 +136,5 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR,"static_root")
+LOGIN_URL = "/bookstore/login/"
+LOGIN_REDIRECT_URL = "homepage/"
