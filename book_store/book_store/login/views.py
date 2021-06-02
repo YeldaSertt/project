@@ -1,11 +1,14 @@
 
 from django.http.response import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from django.urls import reverse
 from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.messages import get_messages
 from .forms import RegisterForm,LoginForm
+
+
 
 def register(Request):
     form = RegisterForm(data=Request.POST or None)
@@ -41,7 +44,9 @@ def user_logout(request):
     username = request.user.username  # o an hangi user giriş yaptıysa kullanıcı alabiliyoruz.
     logout(request)
     msg = "<b> SİSTEMDEN ÇIKIŞ YAPTINIZ %s </b>"%(username)
-    print("-------------")
     print("--------------",msg)
     messages.success(request,msg,extra_tags='success')
     return HttpResponseRedirect(reverse('user_login'))
+
+def user_profile(request,username):
+    user =  get_object_or_404(User)

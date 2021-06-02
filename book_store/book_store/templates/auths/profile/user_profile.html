@@ -1,0 +1,5 @@
+{%extend index.html%}
+{% load static %}
+{% block icerik %}
+{{user.profile.get_screen_name}}
+{% endblock %}
