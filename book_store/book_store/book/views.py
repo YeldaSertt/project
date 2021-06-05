@@ -73,7 +73,8 @@ def blog(request):
     # if not request.user.is_authenticated: 
     #     return HttpResponseRedirect(reverse("user_login"))
     book_list = book.objects.all()
-    return render(request,'blog/blog.html',context = {"book_list":book_list})
+    # return render(request,'blog/blog.html',context = {"book_list":book_list})
+    return render(request,'blog/blog_homepage.html',context = {"book_list":book_list})
 def favorite(Request):
     book_list = book.objects.all()
     return render(Request,'favorite/favorite.html',context={"book_list":book_list})
