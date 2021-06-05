@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.messages import get_messages
 from .forms import RegisterForm,LoginForm
+from .models import UserProfile
 
 
 
@@ -20,8 +21,10 @@ def register(request):
         user = form.save(commit=False)
         password = form.cleaned_data.get("password")
         username = form.cleaned_data.get("username")
+        sex = form.cleaned_data.get("sex")
         user.set_password(password)
         user.save()
+        UserProfile.objects.create(user=user,sex=sex)
         user = authenticate(username=username,password=password)
         if user:
             if user.is_active:
@@ -34,7 +37,7 @@ def user_login(request):
     if not request.user.is_anonymous: 
         return HttpResponseRedirect(reverse("homepage"))
     form = LoginForm(request.POST or None)
-    if form.is_valid():      
+    if form.is_valid():   
         username = form.cleaned_data.get("username")
         password = form.cleaned_data.get("password")
         user = authenticate(username=username,password=password)
@@ -56,4 +59,4 @@ def user_logout(request):
 
 def user_profile(request,username):
     user =  get_object_or_404(User,username=username)
-    return render(request,'',context={"user":user})
+    return render(request,'auths/profile/user_profile.html',context={"user":user})

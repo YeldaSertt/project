@@ -1,15 +1,19 @@
 
+# from typing_extensions import required
 from django import forms
 from django.contrib.auth.models import User
 from django.forms import fields
 from django.contrib.auth import authenticate
+from .models import UserProfile
 
 class RegisterForm(forms.ModelForm):
     password = forms.CharField(min_length=5,required=True,label='Password',widget=forms.PasswordInput(attrs={'class':'form-control'}))
     password_confirm = forms.CharField(min_length=5,required=True,label='Password Control',widget=forms.PasswordInput(attrs={'class':'form-control'}))
+    sex =  forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple(choices=UserProfile.SEX))
+
     class Meta:
         model = User
-        fields=['first_name','last_name','username','email','password','password_confirm']
+        fields=['first_name','last_name','username','email','sex','password','password_confirm']
         
     def __init__(self,*args,**kwargs):
         super(RegisterForm,self).__init__(*args,**kwargs)
