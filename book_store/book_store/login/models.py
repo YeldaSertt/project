@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.shortcuts import reverse
 
 class UserProfile(models.Model):
     SEX = ((None,'Lütfen cinsiyet giriniz!!'),('diger','DİGER'),('erkek','ERKEK'),('kadın','KADIN'))
@@ -17,5 +18,10 @@ class UserProfile(models.Model):
         if user.get_full_name():
             return user.get_full_name
         return user.username
+
+    def user_profile_url(self):
+        url = reverse('user-profile',kwargs={'username':self.user.username})
+        return url
+
 def __str__(self):
     return '%s Profile'% (self.get_screen_name())

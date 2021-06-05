@@ -10,7 +10,6 @@ from .forms import RegisterForm,LoginForm
 from .models import UserProfile
 
 
-
 def register(request):
     # if request.user.is_authenticated: 
     #     return HttpResponseRedirect(reverse("homepage"))
@@ -46,7 +45,7 @@ def user_login(request):
                 login(request,user)
                 msg = "Hoşgeldin"
                 messages.success(request,msg,extra_tags='success')
-                return HttpResponseRedirect(reverse('homepage'))
+                return HttpResponseRedirect(user.user_profile_url())
     return render(request,'auths/login.html',context={"form": form})
 
 def user_logout(request):

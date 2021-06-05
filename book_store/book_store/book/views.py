@@ -67,7 +67,7 @@ def getBookSpecies(Request, species_id):
  
 # @login_required(login_url="/bookstore/login/")
 # @login_required(login_url=reverse_lazy("user_login"))
-@login_required
+@login_required  #settingsde login url eklendi
 def blog(request):
     # # kullanıcı login kontrolü.
     # if not request.user.is_authenticated: 
