@@ -20,16 +20,20 @@ def register(request):
         user = form.save(commit=False)
         password = form.cleaned_data.get("password")
         username = form.cleaned_data.get("username")
-        sex = form.cleaned_data.get("sex")
+        # sex = form.cleaned_data.get("sex")
         user.set_password(password)
         user.save()
-        UserProfile.objects.create(user=user,sex=sex)
+        # print("-----------------",user.userprofile)
+        UserProfile.objects.create(user=user)
         user = authenticate(username=username,password=password)
         if user:
             if user.is_active:
                 login(request,user)
                 messages.success(request,'<b> Tebrikler başarılı </b>',extra_tags='success')
-                return HttpResponseRedirect(reverse('homepage'))
+                return HttpResponseRedirect(reverse(UserProfile.user_url(user.username)))
+                # return HttpResponseRedirect(reverse('user_profile'))
+               
+                # return HttpResponseRedirect(reverse("homepage"))
     return render(request,'auths/register.html',context={'form':form})
     
 def user_login(request):
@@ -45,17 +49,16 @@ def user_login(request):
                 login(request,user)
                 msg = "Hoşgeldin"
                 messages.success(request,msg,extra_tags='success')
-                return HttpResponseRedirect(user.user_profile_url())
+                return HttpResponseRedirect(reverse('homepage'))
     return render(request,'auths/login.html',context={"form": form})
 
 def user_logout(request):
     username = request.user.username  # o an hangi user giriş yaptıysa kullanıcı alabiliyoruz.
     logout(request)
     msg = "<b> SİSTEMDEN ÇIKIŞ YAPTINIZ %s </b>"%(username)
-    print("--------------",msg)
     messages.success(request,msg,extra_tags='success')
     return HttpResponseRedirect(reverse('user_login'))
 
-def user_profile(request,username):
-    user =  get_object_or_404(User,username=username)
-    return render(request,'auths/profile/user_profile.html',context={"user":user})
+def user_profile(request):
+    # user =  get_object_or_404(User,username=username)
+    return render(request,'auths/profile/user_profile.html',context={"user":request.user})

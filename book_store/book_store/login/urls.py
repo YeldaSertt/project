@@ -5,5 +5,6 @@ urlpatterns = [
     url(r"^register/$",register,name='register'),
     url(r"^login/$",user_login,name='user_login'),
     url(r"^logout/$",user_logout,name='user_logout'),
-    url(r"^(?P<username>[-\w]+)/$",view=user_profile,name='user-profile')
+    url(r"^profile/$",user_profile,name='user_profile')
+
 ]

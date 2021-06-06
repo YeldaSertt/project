@@ -22,6 +22,15 @@ class UserProfile(models.Model):
     def user_profile_url(self):
         url = reverse('user-profile',kwargs={'username':self.user.username})
         return url
+    def user_url(userName):
+            print("aaaaaaaaaaaaa",userName)
+            url='user_profile'
+            return url
+
+    def get_profile_image(self):
+        if self.profile_photo:
+            return self.profile_photo.url
+        return "/static/images/demo/defaultfoto.png"
 
 def __str__(self):
     return '%s Profile'% (self.get_screen_name())

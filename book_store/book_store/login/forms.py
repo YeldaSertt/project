@@ -9,11 +9,11 @@ from .models import UserProfile
 class RegisterForm(forms.ModelForm):
     password = forms.CharField(min_length=5,required=True,label='Password',widget=forms.PasswordInput(attrs={'class':'form-control'}))
     password_confirm = forms.CharField(min_length=5,required=True,label='Password Control',widget=forms.PasswordInput(attrs={'class':'form-control'}))
-    sex =  forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple(choices=UserProfile.SEX))
+    # sex =  forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple(choices=UserProfile.SEX))
 
     class Meta:
         model = User
-        fields=['first_name','last_name','username','email','sex','password','password_confirm']
+        fields=['first_name','last_name','username','email','password','password_confirm']
         
     def __init__(self,*args,**kwargs):
         super(RegisterForm,self).__init__(*args,**kwargs)
@@ -36,7 +36,6 @@ class RegisterForm(forms.ModelForm):
         if  User.objects.filter(email=email).exists():         
             raise forms.ValidationError('Bu email sistemde kayıtlı')
         return email
-
 
 class LoginForm(forms.Form):
     username = forms.CharField(required=True,max_length=50,label="Kullanıcı Adı",widget=forms.TextInput(attrs={"class":"form-control"}))
